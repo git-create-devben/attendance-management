@@ -1,19 +1,14 @@
-
-import DemoPage from '@/table/page'
-import { createFileRoute } from '@tanstack/react-router'
+import DemoPage from '../table/page'; // Corrected import path
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
   component: Index,
-})
+});
 
- function Index() {
+function Index() {
   return (
     <div>
- 
-
-      <DemoPage/>
+      <DemoPage />
     </div>
-
-  )
+  );
 }
-
