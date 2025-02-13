@@ -12,6 +12,7 @@ export const Route = createRootRoute({
       setSidebarOpen(!sidebarOpen)
     }
 
+
     return (
       <>
         <div className="flex h-screen bg-background p-4">
