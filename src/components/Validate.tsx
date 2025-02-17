@@ -5,12 +5,9 @@ import { getDocs, collection, doc, updateDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { format } from "date-fns";
 
-interface StudentIdTypes {
-  studentId: string;
-}
 
 const ValidateSuccess = () => {
-  const { studentId }: StudentIdTypes = useParams({ strict: false });
+  const { studentId } = useParams({ strict: false });
   const [students, setStudents] = useState<{ id: string; name: string }[]>([]);
   const [isMarked, setIsMarked] = useState(false);
 

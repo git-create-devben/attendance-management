@@ -37,6 +37,7 @@ const QRCodeGenerator = () => {
               viewBox={`0 0 256 256`}
             />
 
+
           </div>
         ))}
       </div>

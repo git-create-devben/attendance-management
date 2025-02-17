@@ -11,20 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as ValidateImport } from './routes/validate'
 import { Route as StudentImport } from './routes/student'
 import { Route as QrcodescannerImport } from './routes/qrcodescanner'
 import { Route as QrcodegeneratorImport } from './routes/qrcodegenerator'
 import { Route as AttendanceImport } from './routes/attendance'
 import { Route as IndexImport } from './routes/index'
+import { Route as ValidateStudentIdImport } from './routes/validate/$studentId'
 
 // Create/Update Routes
-
-const ValidateRoute = ValidateImport.update({
-  id: '/validate',
-  path: '/validate',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const StudentRoute = StudentImport.update({
   id: '/student',
@@ -53,6 +47,12 @@ const AttendanceRoute = AttendanceImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ValidateStudentIdRoute = ValidateStudentIdImport.update({
+  id: '/validate/$studentId',
+  path: '/validate/$studentId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,11 +95,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentImport
       parentRoute: typeof rootRoute
     }
-    '/validate': {
-      id: '/validate'
-      path: '/validate'
-      fullPath: '/validate'
-      preLoaderRoute: typeof ValidateImport
+    '/validate/$studentId': {
+      id: '/validate/$studentId'
+      path: '/validate/$studentId'
+      fullPath: '/validate/$studentId'
+      preLoaderRoute: typeof ValidateStudentIdImport
       parentRoute: typeof rootRoute
     }
   }
@@ -113,7 +113,7 @@ export interface FileRoutesByFullPath {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
-  '/validate': typeof ValidateRoute
+  '/validate/$studentId': typeof ValidateStudentIdRoute
 }
 
 export interface FileRoutesByTo {
@@ -122,7 +122,7 @@ export interface FileRoutesByTo {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
-  '/validate': typeof ValidateRoute
+  '/validate/$studentId': typeof ValidateStudentIdRoute
 }
 
 export interface FileRoutesById {
@@ -132,7 +132,7 @@ export interface FileRoutesById {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
-  '/validate': typeof ValidateRoute
+  '/validate/$studentId': typeof ValidateStudentIdRoute
 }
 
 export interface FileRouteTypes {
@@ -143,7 +143,7 @@ export interface FileRouteTypes {
     | '/qrcodegenerator'
     | '/qrcodescanner'
     | '/student'
-    | '/validate'
+    | '/validate/$studentId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,7 +151,7 @@ export interface FileRouteTypes {
     | '/qrcodegenerator'
     | '/qrcodescanner'
     | '/student'
-    | '/validate'
+    | '/validate/$studentId'
   id:
     | '__root__'
     | '/'
@@ -159,7 +159,7 @@ export interface FileRouteTypes {
     | '/qrcodegenerator'
     | '/qrcodescanner'
     | '/student'
-    | '/validate'
+    | '/validate/$studentId'
   fileRoutesById: FileRoutesById
 }
 
@@ -169,7 +169,7 @@ export interface RootRouteChildren {
   QrcodegeneratorRoute: typeof QrcodegeneratorRoute
   QrcodescannerRoute: typeof QrcodescannerRoute
   StudentRoute: typeof StudentRoute
-  ValidateRoute: typeof ValidateRoute
+  ValidateStudentIdRoute: typeof ValidateStudentIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -178,7 +178,7 @@ const rootRouteChildren: RootRouteChildren = {
   QrcodegeneratorRoute: QrcodegeneratorRoute,
   QrcodescannerRoute: QrcodescannerRoute,
   StudentRoute: StudentRoute,
-  ValidateRoute: ValidateRoute,
+  ValidateStudentIdRoute: ValidateStudentIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -196,7 +196,7 @@ export const routeTree = rootRoute
         "/qrcodegenerator",
         "/qrcodescanner",
         "/student",
-        "/validate"
+        "/validate/$studentId"
       ]
     },
     "/": {
@@ -214,8 +214,8 @@ export const routeTree = rootRoute
     "/student": {
       "filePath": "student.tsx"
     },
-    "/validate": {
-      "filePath": "validate.tsx"
+    "/validate/$studentId": {
+      "filePath": "validate/$studentId.tsx"
     }
   }
 }

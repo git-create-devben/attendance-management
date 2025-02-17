@@ -1,7 +1,7 @@
 import ValidateSuccess from '@/components/Validate'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/validate')({
+export const Route = createFileRoute('/validate/$studentId')({
   component: RouteComponent,
 })
 
