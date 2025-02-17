@@ -34,10 +34,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           <Settings className="inline-block mr-2" size={20} />
           Generate Qr
         </Link>
-        <Link to="/qrcodescanner" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">
+        {/* <Link to="/qrcodescanner" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700 hover:text-white">
           <Settings className="inline-block mr-2" size={20} />
           Scan Qr
-        </Link>
+        </Link> */}
       </nav>
     </div>
   )
