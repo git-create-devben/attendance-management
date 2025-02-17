@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ValidateImport } from './routes/validate'
 import { Route as StudentImport } from './routes/student'
 import { Route as QrcodescannerImport } from './routes/qrcodescanner'
 import { Route as QrcodegeneratorImport } from './routes/qrcodegenerator'
@@ -18,6 +19,12 @@ import { Route as AttendanceImport } from './routes/attendance'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const ValidateRoute = ValidateImport.update({
+  id: '/validate',
+  path: '/validate',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const StudentRoute = StudentImport.update({
   id: '/student',
@@ -88,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentImport
       parentRoute: typeof rootRoute
     }
+    '/validate': {
+      id: '/validate'
+      path: '/validate'
+      fullPath: '/validate'
+      preLoaderRoute: typeof ValidateImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -99,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
+  '/validate': typeof ValidateRoute
 }
 
 export interface FileRoutesByTo {
@@ -107,6 +122,7 @@ export interface FileRoutesByTo {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
+  '/validate': typeof ValidateRoute
 }
 
 export interface FileRoutesById {
@@ -116,6 +132,7 @@ export interface FileRoutesById {
   '/qrcodegenerator': typeof QrcodegeneratorRoute
   '/qrcodescanner': typeof QrcodescannerRoute
   '/student': typeof StudentRoute
+  '/validate': typeof ValidateRoute
 }
 
 export interface FileRouteTypes {
@@ -126,8 +143,15 @@ export interface FileRouteTypes {
     | '/qrcodegenerator'
     | '/qrcodescanner'
     | '/student'
+    | '/validate'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/attendance' | '/qrcodegenerator' | '/qrcodescanner' | '/student'
+  to:
+    | '/'
+    | '/attendance'
+    | '/qrcodegenerator'
+    | '/qrcodescanner'
+    | '/student'
+    | '/validate'
   id:
     | '__root__'
     | '/'
@@ -135,6 +159,7 @@ export interface FileRouteTypes {
     | '/qrcodegenerator'
     | '/qrcodescanner'
     | '/student'
+    | '/validate'
   fileRoutesById: FileRoutesById
 }
 
@@ -144,6 +169,7 @@ export interface RootRouteChildren {
   QrcodegeneratorRoute: typeof QrcodegeneratorRoute
   QrcodescannerRoute: typeof QrcodescannerRoute
   StudentRoute: typeof StudentRoute
+  ValidateRoute: typeof ValidateRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -152,6 +178,7 @@ const rootRouteChildren: RootRouteChildren = {
   QrcodegeneratorRoute: QrcodegeneratorRoute,
   QrcodescannerRoute: QrcodescannerRoute,
   StudentRoute: StudentRoute,
+  ValidateRoute: ValidateRoute,
 }
 
 export const routeTree = rootRoute
@@ -168,7 +195,8 @@ export const routeTree = rootRoute
         "/attendance",
         "/qrcodegenerator",
         "/qrcodescanner",
-        "/student"
+        "/student",
+        "/validate"
       ]
     },
     "/": {
@@ -185,6 +213,9 @@ export const routeTree = rootRoute
     },
     "/student": {
       "filePath": "student.tsx"
+    },
+    "/validate": {
+      "filePath": "validate.tsx"
     }
   }
 }

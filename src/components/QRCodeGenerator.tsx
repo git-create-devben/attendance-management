@@ -31,7 +31,7 @@ const QRCodeGenerator = () => {
           >
             <h3 className="text-text text-sm">{student.name}</h3>
             <QRCode
-              value={student.id}
+              value={`https://attendance-management-orpin.vercel.app/${student.id}`}
               size={150}
               style={{ height: "auto", maxWidth: "100%", width: "100%" }}
               viewBox={`0 0 256 256`}
